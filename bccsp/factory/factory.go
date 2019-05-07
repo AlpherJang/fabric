@@ -47,7 +47,6 @@ var (
 // BCCSPFactory is used to get instances of the BCCSP interface.
 // A Factory has name used to address it.
 type BCCSPFactory interface {
-
 	// Name returns the name of this factory
 	Name() string
 
@@ -61,7 +60,8 @@ func GetDefault() bccsp.BCCSP {
 		logger.Warning("Before using BCCSP, please call InitFactories(). Falling back to bootBCCSP.")
 		bootBCCSPInitOnce.Do(func() {
 			var err error
-			f := &SWFactory{}
+			//f := &SWFactory{}
+			f := &GMFactory{}
 			bootBCCSP, err = f.Get(GetDefaultOpts())
 			if err != nil {
 				panic("BCCSP Internal error, failed initialization with GetDefaultOpts!")
