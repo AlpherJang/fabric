@@ -36,6 +36,15 @@ func (opts *SHA384Opts) Algorithm() string {
 	return SHA384
 }
 
+// GMSM3Opts  GM SM3
+type GMSM3Opts struct {
+}
+
+// Algorithm returns the key importation algorithm identifier (to be used).
+func (opts *GMSM3Opts) Algorithm() string {
+	return GMSM3
+}
+
 // SHA3_256Opts contains options relating to SHA3-256.
 type SHA3_256Opts struct {
 }
@@ -65,6 +74,8 @@ func GetHashOpt(hashFunction string) (HashOpts, error) {
 		return &SHA3_256Opts{}, nil
 	case SHA3_384:
 		return &SHA3_384Opts{}, nil
+	case GMSM3:
+		return &GMSM3Opts{}, nil
 	}
 	return nil, fmt.Errorf("hash function not recognized [%s]", hashFunction)
 }
